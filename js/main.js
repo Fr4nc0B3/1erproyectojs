@@ -43,17 +43,14 @@ function saludar() {
   //llamo a la funcion saludar
   saludar();
   let opcion = prompt(
-    "Ingrese una opcion: \n 1: Comprar torta \n 2: Finalizar compra  \n 3: Terminar  ");
+    "Ingrese una opcion: \n 1: Comprar torta \n 2: Terminar  ");
   //agrego bucle 
-  while (opcion !== "3") {
+  while (opcion !== "2") {
     if (opcion === "1") {
       comprarTorta();
+      opcion = "2"
     }
-    if (opcion === "2") {
 
-      finalizarCompra();
-      opcion = "3";
-    }
   }
 
   alert("Gracias por su compra"); 
