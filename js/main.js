@@ -34,12 +34,15 @@ function saludar() {
     }
   }
 
+
+
   //declaro variables
   let exquisites;
   let brownie = 1800;
   let cheesecake = 2100;
   let crumble = 1500;
   let nombre = prompt("Ingrese su nombre");
+
   //llamo a la funcion saludar
   saludar();
   let opcion = prompt(
@@ -49,8 +52,10 @@ function saludar() {
     if (opcion === "1") {
       comprarTorta();
       opcion = "2"
+    
     }
-
   }
-
+  console.log("La opcion elegida fue: " + opcion);
+  console.log("La exquisites elegida fue: " + exquisites);  
+  console.log("El nombre del cliente es: " + nombre);
   alert("Gracias por su compra"); 
