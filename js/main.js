@@ -32,6 +32,8 @@ function saludar() {
         "Usted eligio Crumble de Manzanas por un monto  final de " +
           (crumble -(crumble * 0.15)));
     }
+
+    opcion = prompt("Ingrese 3 para terminar")
   }
 
 
@@ -46,14 +48,15 @@ function saludar() {
   //llamo a la funcion saludar
   saludar();
   let opcion = prompt(
-    "Ingrese una opcion: \n 1: Comprar torta \n 2: Terminar  ");
+    "Ingrese una opcion: \n 1: Comprar torta \n 3: Terminar  ");
   //agrego bucle 
-  while (opcion !== "2") {
+  while (opcion !== "3") {
     if (opcion === "1") {
       comprarTorta();
-      opcion = "2"
+    } else if (opcion === "2"){
+      finalizarCompra()
+    }  else (opcion === "3")
     
-    }
   }
   console.log("La opcion elegida fue: " + opcion);
   console.log("La exquisites elegida fue: " + exquisites);  
