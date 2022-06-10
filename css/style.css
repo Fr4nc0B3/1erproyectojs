@@ -1,0 +1,313 @@
+body{
+	background-color: #fdf1d8;
+	overflow-x: hidden;
+	width: 100%;
+}
+
+
+header{
+	background-color: #B29283;
+}
+
+nav a h3{
+	color: darkgreen;
+}
+
+.navbar a img{
+	height: 30px;
+	width: 32px;
+}
+
+
+
+.navbar-light .navbar-nav .nav-link.active{
+
+	font-weight: 500;		
+	font-size: 1em;
+	color: darkgreen;
+}
+
+.navbar-toggler{
+	background-color: #7A5954;
+}
+
+.home{
+	justify-content: flex-end;
+}
+
+
+
+
+
+
+.textoH{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		border-top: 1px solid;
+		background-color: #7A5954;
+}
+
+.textoH h3{
+	color: #fdf1d8;
+	text-shadow: 1px 2px 1px black;
+	font-size: 2em;
+
+	font-weight: 500;
+	margin-top: 12px;
+}
+
+.textoH p{
+
+	font-weight: bold;
+    text-align: center;
+    color: #fdf1d8;
+	text-shadow: 1px 2px 1px black;
+	padding: 10px;
+
+}
+
+.textoM{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-top: 1px solid;
+	border-right: 1px solid;
+	border-bottom: 1px solid;
+	background-color: #7A5954;
+	margin-top: 20px;
+    text-align: center;
+}
+.textoM h3{
+	color: #fdf1d8;
+	text-shadow: 1px 2px 1px black;
+	font-size: 2em;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 500;
+	margin-top: 12px;
+}
+.textoM p{
+
+	font-weight: bold;
+    text-align: center;
+    color: #fdf1d8;
+	text-shadow: 1px 2px 1px black;
+	padding: 10px;
+}
+
+
+
+
+.footer{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #B29283;
+	height: 100px;
+}
+
+
+
+
+
+.footer h3{
+	display: inline;
+	background-color: transparent;
+	text-align: center;
+	padding: 10px;
+	color: darkgreen;
+	font-size: 16px;
+}
+
+
+.rrhh{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+}
+
+.rrhh img{
+	width: 30px;
+	height: 30px;
+}
+
+.contacto{
+	display: flex;
+	justify-content: flex-end;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.titulo{
+	display: flex;
+	max-width: 100%;
+	justify-content: center;
+	background-color: #7A5954;
+    align-items: center;	
+}
+
+.titulo h1{
+	display: inline-block;
+	text-align: center;
+	letter-spacing: 1px;
+	line-height: 1.4em;
+	color: #fdf1d8;
+    text-shadow: 1px 2px 1px black;
+    margin: 0px;		
+}
+
+
+
+
+
+/*PRODUCTOS*/
+
+.titulo__secundarioM{
+	margin: 10px 0px;
+	margin-bottom: 5px;
+	padding-left: 0PX;
+}
+
+.titulo__secundarioM h3{
+	text-align: start;
+
+	font-weight: normal;
+	font-size: 26px;
+	letter-spacing: 1px;
+	line-height: 2.4em;
+	color: #fdf1d8;
+    background-color: #7A5954;
+	padding-left: 35%;
+    padding-right: 15px;
+    text-shadow: 1px 2px 1px black;
+    display: inline;
+}
+
+.titulo__secundarioH{
+	margin: 10px 0px;
+	margin-bottom: 5px;
+	padding-left: 0PX;
+}
+
+.titulo__secundario h3{
+	text-align: start;
+
+	font-weight: normal;
+	font-size: 26px;
+	letter-spacing: 1px;
+	line-height: 2.4em;
+	color: #fdf1d8;
+    background-color: #7A5954;
+	padding-left: 35%;
+    padding-right: 15px;
+    text-shadow: 1px 2px 1px black;
+    display: inline;
+}
+
+.card .textoM{
+	width: 100%;
+	margin: 0px;
+}
+
+.card .textoM h5{
+	color: #fdf1d8;
+	text-shadow: 1px 2px 1px black;
+	font-size: 1.7em;
+
+	font-weight: 500;
+}
+
+
+.cardbox{
+	margin: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}
+
+.card{
+	margin: 10px;
+	max-width: 300px;
+	max-height: 450px;
+	min-height: 450px;
+	min-width: 300px;
+}
+
+.card img{
+	max-height: 250px;
+	min-height: 250px;
+}
+
+
+
+
+/*ANIMACIONES*/
+
+
+	.titulo__secundario h2{
+		animation-name: desplazamientoA;
+		animation-duration: 3.5s;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes desplazamientoA {
+		from{
+			position: relative;
+			padding-left: 0px;
+		}
+
+		to{
+			padding-left: 15%;
+
+		}
+	}
+
+
+
+	.titulo__secundarioM h3{
+		animation-name: desplazamientoS;
+		animation-duration: 2.5s;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes desplazamientoS {
+		from{
+			padding-left: 0px;
+			position: relative;
+		}
+
+		to{
+			padding-left: 80%;
+
+		}
+	}
+
+
+	@keyframes desplazamiento {
+		from{
+			padding-left: 0px;
+			position: relative;
+		}
+
+		to{
+			padding-left: 25%;
+
+		}
+	}
+
+
+
+
