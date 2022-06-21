@@ -39,7 +39,7 @@ nav a h3{
 
 
 
-
+/* 
 .textoH{
 		display: flex;
 		flex-direction: column;
@@ -66,7 +66,7 @@ nav a h3{
 	text-shadow: 1px 2px 1px black;
 	padding: 10px;
 
-}
+} */
 
 .textoM{
 	display: flex;
@@ -79,6 +79,8 @@ nav a h3{
 	background-color: #7A5954;
 	margin-top: 20px;
     text-align: center;
+	margin: 0px;
+	padding: 0px;
 }
 .textoM h3{
 	color: #fdf1d8;
@@ -87,6 +89,8 @@ nav a h3{
 	font-family: 'Oswald', sans-serif;
 	font-weight: 500;
 	margin-top: 12px;
+	margin: 0px;
+	padding: 0px;
 }
 .textoM p{
 
@@ -95,9 +99,13 @@ nav a h3{
     color: #fdf1d8;
 	text-shadow: 1px 2px 1px black;
 	padding: 10px;
+	padding: 0px;
+	margin: 0px;
 }
 
-
+#contenedorProductos{
+	margin-bottom: 25px;
+}
 
 
 .footer{
@@ -106,6 +114,7 @@ nav a h3{
 	align-items: center;
 	background-color: #B29283;
 	height: 100px;
+    bottom: 0px;
 }
 
 

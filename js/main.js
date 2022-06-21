@@ -1,43 +1,104 @@
 let carrito = [];
 
+const contenedorProductos = document.getElementById("contenedorProductos");
+
+const selecTipo = document.getElementById("selecTipo");
+
+
 let productos = [
   {
     id: 1,
     nombre: "Brownie",
-    tipo: "Torta",
+    img: "https://images.unsplash.com/photo-1610611424854-5e07032143d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
+    tipo: "torta",
+    txt: "",
     precio: 1800,
   },
   {
     id: 2,
     nombre: "Delicias de Vainilla",
-    tipo: "Torta",
+    img: "https://images.unsplash.com/photo-1594054528735-d3782132b380?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+    txt: "(Torta humeda de vainilla c/ relleno de crema chantilly y chips de chocolate blanco, cubierta de ganache de chocolate blanco y crocante)",
+    tipo: "torta",
     precio: 2200,
   },
   {
     id: 3,
     nombre: "Delicias de Chocolate",
-    tipo: "Torta",
+    img: "https://images.unsplash.com/photo-1464942358668-9db3e718e6a5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+    txt: "(Tortahumeda de chocolate c/rellleno de DDL repostero, cubierta de ganache de chocolate y chips de chocolate)",
+    tipo: "torta",
     precio: 2200,
   },
   {
     id: 4,
     nombre: "Crumble de Manzanas",
-    tipo: "Tarta",
+    img: "https://images.unsplash.com/photo-1622219783350-b544b2d2bd24?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+    txt: "",
+    tipo: "tarta",
     precio: 1500,
   },
   {
     id: 5,
-    nombre: "Lemon Pie",
-    tipo: "Tarta",
+    nombre: "Lemon Pie", 
+    img: "https://images.unsplash.com/photo-1519915028121-7d3463d20b13?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+    txt: "",
+    tipo: "tarta",
     precio: 2300,
   },
   {
     id: 6,
     nombre: "Tarta Bombom",
-    tipo: "Tarta",
+    img: "https://images.unsplash.com/photo-1512223792601-592a9809eed4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=352&q=80",
+    txt:"(Base de masa sable de chocolate, relleno de DDL repostero y cubierta de ganace de chocolate semiamargo)",
+    tipo: "tarta",
     precio: 1600,
   },
 ];
+
+
+selecTipo.addEventListener("change",()=>{
+
+  console.log(selecTipo.value);
+  if (selecTipo.value === "all") {
+    mostrarProductos(productos)
+  }else{
+    mostrarProductos(productos.filter(el => el.tipo === selecTipo.value))
+  };
+  
+});
+
+
+
+
+mostrarProductos(productos)
+
+function mostrarProductos(array) {
+
+  contenedorProductos.innerHTML = ""
+
+
+  array.forEach(el => {
+    let div = document.createElement("div")
+    div.className = "col mb-4 col-lg-3 cardbox"
+    div.innerHTML = `
+            <div class="card">
+            <img src="${el.img}" class="card-img-top" alt="Conan">
+              <div class="textoM card-body">
+                <h5 class="card-title">${el.nombre}</h5>
+                <p class="card-text">${el.txt}</p>
+                <p>$${el.precio}</p>
+              </div>
+            </div>`
+
+           contenedorProductos.appendChild(div)   
+  });
+
+
+  
+};
+
+
 
 
 function saludar() {
@@ -48,11 +109,27 @@ let nombre = prompt("ingresa tu nombre")
 saludar()
 
 
- let ingreso = parseInt(prompt("ingrese el precio a filtrar(minimo, 1500)"));
-let filtrado = productos.filter((el) => {
-  return el.precio <= ingreso
-});
-console.log(filtrado);
+  let ingresoP = parseInt(prompt("ingrese el precio a filtrar(minimo, 1500)"));
+  let ingresoT = prompt("Ingrese el tipo de producto que desee 'torta o tarta'");
+
+function filtrado(precio,tipo) {
+
+    ingresoP = precio;
+  let precioF = productos.filter((producto) => {
+  return producto.precio <= precio
+  });
+  console.log(precioF);
+  ingresoT = tipo;
+  let tipoF = productos.filter((producto) => {
+   return producto.tipo === tipo
+   });    
+   console.log(tipoF);
+
+}
+
+
+filtrado(ingresoP, ingresoT)
+
 
 
 
@@ -66,7 +143,7 @@ function agregarProducto(idProducto, cantidad) {
       //creo el nuevo objeto para agregar al carrito
          let producto_nuevo = new productoNuevo(exquisites.id, exquisites.nombre, exquisites.tipo, exquisites.precio)
     carrito.push({
-      //agrego el objeto creado con la constructora anterior y creando la nueva propiedad de cantidad
+      //agrego el objeto creado con la constructora anterior y creando la nueva propiedad de cantidad y precioTotal
       id: producto_nuevo.id,
       nombre: producto_nuevo.nombre,
       precioUnitario: producto_nuevo.precio,
