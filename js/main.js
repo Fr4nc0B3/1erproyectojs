@@ -1,6 +1,12 @@
 let carrito = [];
 
 const contenedorProductos = document.getElementById("contenedorProductos");
+const contenedorCarrito = document.getElementById("carrito-contenedor")
+
+
+const contadorCarrito = document.getElementById("contadorCarrito")
+const precioTotal = document.getElementById("precio-total")
+
 
 const selecTipo = document.getElementById("selecTipo");
 
@@ -80,18 +86,25 @@ function mostrarProductos(array) {
 
   array.forEach(el => {
     let div = document.createElement("div")
-    div.className = "col mb-4 col-lg-3 cardbox"
+    div.className = "col mb-4 col-lg-4 cardbox"
     div.innerHTML = `
             <div class="card">
-            <img src="${el.img}" class="card-img-top" alt="Conan">
+            <img src="${el.img}" class="card-img-top" alt="${el.nombre}">
               <div class="textoM card-body">
                 <h5 class="card-title">${el.nombre}</h5>
                 <p class="card-text">${el.txt}</p>
-                <p>$${el.precio}</p>
+                <p class="precio-card" style="font-size: 17px;">$${el.precio}</p>
+                <a id="boton${el.id}" class="btn btn-primary btn-sm">Comprar</a>
               </div>
             </div>`
 
            contenedorProductos.appendChild(div)   
+
+           let btnCompra = document.getElementById(`boton${el.id}`)
+
+           btnCompra.addEventListener("click",() =>{
+              agregarCarrito(el.id);
+           })
   });
 
 
@@ -100,131 +113,55 @@ function mostrarProductos(array) {
 
 
 
+function agregarCarrito(id) {
 
-function saludar() {
+  let productosEnCarrito = carrito.find(e=> e.id === id)
 
-  alert("Bienvenido a NSExquisiteses " + nombre + " listo para endulzarte?");
-}
-let nombre = prompt("ingresa tu nombre")
-saludar()
-
-
-  let ingresoP = parseInt(prompt("ingrese el precio a filtrar(minimo, 1500)"));
-  let ingresoT = prompt("Ingrese el tipo de producto que desee 'torta o tarta'");
-
-function filtrado(precio,tipo) {
-
-    ingresoP = precio;
-  let precioF = productos.filter((producto) => {
-  return producto.precio <= precio
-  });
-  console.log(precioF);
-  ingresoT = tipo;
-  let tipoF = productos.filter((producto) => {
-   return producto.tipo === tipo
-   });    
-   console.log(tipoF);
-
-}
-
-
-filtrado(ingresoP, ingresoT)
-
-
-
-
-function agregarProducto(idProducto, cantidad) {
-  //obtener datos del producto origanl
-  let exquisites = productos.find((producto) => producto.id === idProducto);
-  //revisamos si el producto ya existe en mi carrito
-  let productoEnCarrito = carrito.find(producto => producto.id === idProducto);
-//evaluamos, si no esta se crea un nuevo objeto dentro de carrito
-    if (productoEnCarrito === undefined) {
-      //creo el nuevo objeto para agregar al carrito
-         let producto_nuevo = new productoNuevo(exquisites.id, exquisites.nombre, exquisites.tipo, exquisites.precio)
-    carrito.push({
-      //agrego el objeto creado con la constructora anterior y creando la nueva propiedad de cantidad y precioTotal
-      id: producto_nuevo.id,
-      nombre: producto_nuevo.nombre,
-      precioUnitario: producto_nuevo.precio,
-      precioTotal: producto_nuevo.precio * cantidad,
-      cantidad: cantidad})
-    } else {
-      // si el producto ya existe, modifico las cantidades y el precio total
-      let productoIndice = carrito.findIndex(producto => producto.id === idProducto);
-      carrito[productoIndice].cantidad = carrito[productoIndice].cantidad + cantidad
-      carrito[productoIndice].precioTotal = carrito[productoIndice].precioTotal + exquisites.precio * cantidad
-    }
-
- }
-
- function productoNuevo(id, nombre, tipo,precio){
-  
-  this.id = id;
-  this.nombre = nombre;
-  this.tipo = tipo;
-  this.precio = precio
-} 
-
- let opcion = prompt(
-  "Ingrese una opcion: \n 1: Comprar torta  \n 3: Terminar  "
-);
-//agrego bucle
-while (opcion !== "3") {
-  if (opcion === "1") {
-    comprarTorta();
-  }
-  if (opcion === "3"){
-    alert(" Su recibo es: " +           
-     "Productos :" + "\n" +
-      carrito.map((producto) => `\n Cantidad: ${producto.cantidad} - Nombre: ${producto.nombre} - Precio x Unidad: ${producto.precioUnitario} - Precio total: ${producto.precioTotal}`) +"\n" +      
-                "Costo total de la compra: " + carrito.reduce((acc, { precioTotal }) => acc + precioTotal, 0))
-  };
-}
-
-//funcion comprar producto
-function comprarTorta() {
- let exquisites = parseInt(prompt(
-    "Elija una de nuestras exquisiteses \n 1: Brownie  \n 2: Delicias de Vainilla \n 3: Crumble de Manzanas \n 4: Delicias de Chocolate  \n 5: Lemon Pie \n 6: Tarta Bombom"
-  ));
-  let cantidad = parseInt(prompt("ingrese su cantidad: "));
-  switch (exquisites) {
-  
-    case 1:
-      alert(" Elegiste Brownie para tu compra");
-      agregarProducto(exquisites, cantidad)
-      break;
-    case 2:
-      alert(" Elegiste Delicias de Vainilla para tu compra");
-      agregarProducto(exquisites, cantidad)
-      break;
-    case 3:
-      alert(" Elegiste Crumble de Manzanas para tu compra");
-      agregarProducto(exquisites, cantidad)
-      break;
-    case 4:
-      alert(" Elegiste Delicias de Chocolate para tu compra");
-      agregarProducto(exquisites, cantidad)
-      break;
-    case 5:
-      alert(" Elegiste Lemon Pie para tu compra");
-      agregarProducto(exquisites, cantidad)
-      break;
-    case 6:
-      alert(" Elegiste Tarta Bombom para tu compra");
-      agregarProducto(exquisites, cantidad)
-      break;
-    default:
-      alert("Solo puedes ingresar numeros del 1 al 6");
-      break;
+  if (productosEnCarrito) {
+    productosEnCarrito.cantidad = productosEnCarrito.cantidad + 1
+    document.getElementById(`cantidad${productosEnCarrito.id}`).innerHTML =  `<p id="cantidad${productosEnCarrito.id}">Cantidad: ${productosEnCarrito.cantidad}</p>`
+    cantidadEnCarrito();
+    
+  } else {
+      let productoAgregar = productos.find(e => e.id === id)
+      productoAgregar.cantidad = 1
+    carrito.push(productoAgregar);
+    cantidadEnCarrito();
+    carritoVentana(productoAgregar);
   }
 
-  return (opcion = prompt(
-    "Vuelva a ingresar una opcion \n 1: Continuar compra  \n 3: Terminar"
-  ));
+
 }
 
-alert("Gracias por su compra");
+function carritoVentana(productoAgregar) {
+
+    let div = document.createElement("div");
+    div.className = "productosEnCarrito"
+    div.innerHTML = `
+            <p>${productoAgregar.nombre}</p>
+            <p>${productoAgregar.precio}</p>
+            <p id="cantidad${productoAgregar.id}">Cantidad: ${productoAgregar.cantidad}</p>
+            <button id="eliminar${productoAgregar.id}" type="button" class="btn-sm btn btn-danger">Eliminar</button> `
+    contenedorCarrito.appendChild(div)
+
+    let eliminar = document.getElementById(`eliminar${productoAgregar.id}`) 
+    eliminar.addEventListener("click",()=>{
+      if (productoAgregar.cantidad === 1) {
+        eliminar.parentElement.remove();
+        carrito = carrito.filter(e=> e.id !== productoAgregar.id)
+        cantidadEnCarrito();
+      } else {
+        productoAgregar.cantidad = productoAgregar.cantidad - 1
+        document.getElementById(`cantidad${productoAgregar.id}`).innerHTML =  `<p id="cantidad${productoAgregar.id}">Cantidad: ${productoAgregar.cantidad}</p>`
+        cantidadEnCarrito();
+      }
+    })
+  
+}
 
 
+function cantidadEnCarrito() {
 
+  contadorCarrito.innerText = carrito.reduce((acc,el)=> acc + el.cantidad, 0)
+  precioTotal.innerText = carrito.reduce((acc, el) => acc + (el.precio * el.cantidad), 0)
+}

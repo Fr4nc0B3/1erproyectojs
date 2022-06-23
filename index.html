@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Exqusisiteses</title>
+	<title>Exquisiteces</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -13,13 +13,14 @@
 		<div class="row">
 		<header class="col-12 col-md-12 col-lg-12">
 			<nav class="navbar navbar-expand-lg navbar-light">
-			<a class="navbar-brand" href="index.html"><h3> NS Exqusisiteses </h3></a>
+			<a class="navbar-brand" href="index.html"><h3> NS Exquisiteces </h3></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse home" id="navbarNavAltMarkup">
 				<div class="navbar-nav">
-				<a class="nav-link active" href="index.html"><img class="carrito" src= "https://cdn-icons.flaticon.com/png/512/4202/premium/4202388.png?token=exp=1654892169~hmac=f51f99cfc86a08a5c6bdca17b543548f" alt="carrito">  <span class="sr-only"></span></a>               
+					<button type="button" class="nav-link active" data-toggle="modal" data-target="#exampleModalCenter"><img class="carrito" src= "https://icongr.am/fontawesome/cart-plus.svg?size=100&color=287109" alt="carrito">  <span id="contadorCarrito">0</span>
+					  </button>  
 				</div>
 			</div>
 			</nav>
@@ -37,7 +38,7 @@
 		<div class="row">
 		<div class="titulo__secundarioM col-5">
 		<!-- 	<h3 class="titulo__producto">Tortas</h3> -->
-		<label>Tipos: 
+		<label>Variedades: 
 			<select id="selecTipo">
 				<option value="all">Todos</option>
 				<option value="torta">Tortas</option>
@@ -47,74 +48,31 @@
 		</div>
 		</div>
 		<div id="contenedorProductos" class="row row-cols-1 row-cols-md-2">
-		<!-- <div class="col mb-4 col-lg-3 cardbox">
-			<div class="card">
-			<img src="https://images.unsplash.com/photo-1610611424854-5e07032143d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80" class="card-img-top" alt="Invictus">
-			<div class="textoM card-body">
-				<h5 class="card-title">Brownie</h5>
-				<p class="card-text"></p>
-			</div>
-			</div>
-		</div>
-		<div class="col mb-4 col-lg-3 cardbox">
-			<div class="card">
-			<img src="https://images.unsplash.com/photo-1594054528735-d3782132b380?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" class="card-img-top" alt="Conan">
-			<div class="textoM card-body">
-				<h5 class="card-title">Delicias de Vainilla</h5>
-				<p class="card-text">(Torta humeda de vainilla c/ relleno de crema chantilly y chips de chocolate blanco, cubierta de ganache de chocolate blanco y crocante)</p>
-			</div>
-			</div>
-		</div>
-		<div class="col mb-4 col-lg-3 cardbox">
-			<div class="card">
-			<img src="https://images.unsplash.com/photo-1464942358668-9db3e718e6a5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" class="card-img-top" alt="Capo">
-			<div class="textoM card-body">
-				<h5 class="card-title">Delicias de Chocolate                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </h5>
-				<p class="card-text">(Tortahumeda de chocolate c/rellleno de DDL repostero, cubierta de ganache de chocolate y chips de chocolate)</p>
-			</div>
-			</div>
-		</div>
 		</div>
 	</div>
-	<div class="container-fluid">
-		<div class="row">
-		<div class="titulo__secundarioM col-5">
-			<h3 class="titulo__producto">Tartas</h3>
-		</div>
-		</div>
-		<div class="row row-cols-1 row-cols-md-2">
-		<div class="col mb-4 col-lg-3 cardbox">
-			<div class="card">
-			<img src="https://images.unsplash.com/photo-1622219783350-b544b2d2bd24?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" class="card-img-top" alt="Centu">
-			<div class="textoM card-body">
-				<h5 class="card-title">Crumble de Manzanas</h5>
-				<p class="card-text"></p>
+
+		<!-- Modal -->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLongTitle">Carrito</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
 			</div>
+			<div id="carrito-contenedor" class="modal-body">
 			</div>
-		</div>
-		<div class="col mb-4 col-lg-3 cardbox">
-			<div class="card">
-			<img src="https://images.unsplash.com/photo-1519915028121-7d3463d20b13?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" class="card-img-top" alt="Lila">
-			<div class="textoM card-body">
-				<h5 class="card-title">Lemon Pie</h5>
-				<p class="card-text"></p>
+			<p class="precioProducto">Precio Total: $<span id="precio-total">0</span></p>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-primary">Comprar</button>
 			</div>
-			</div>
-		</div>
-		<div class="col mb-4 col-lg-3 cardbox">
-			<div class="card">
-			<img src="https://images.unsplash.com/photo-1512223792601-592a9809eed4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=352&q=80" class="card-img-top" alt="Athenea">
-			<div class="textoM card-body">
-				<h5 class="card-title">Tarta Bombom</h5>
-				<p class="card-text">(Base de masa sable de chocolate, relleno de DDL repostero y cubierta de ganace de chocolate semiamargo)</p>
-			</div>
-			</div> -->
 		</div>
 		</div>
 	</div>
 	<div class="container-fluid">
 		<footer class="row footer">
-		<a class="col-4 col-md-4 col-lg-4 log" href="index.html"><h3> NS Exqusisiteses </h3></a> 
+		<a class="col-4 col-md-4 col-lg-4 log" href="index.html"><h3> NS Exquisiteces </h3></a> 
 		<div class="col-4 col-md-4 col-lg-4 rrhh">
 			<a href="#"><img src="https://icongr.am/fontawesome/instagram.svg?size=40&color=0b5606" alt="instagram"></a>  
 			<a href="#"><img src="https://icongr.am/fontawesome/facebook-square.svg?size=40&color=0b5606" alt="facebook"></a> 

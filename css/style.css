@@ -11,6 +11,9 @@ header{
 
 nav a h3{
 	color: darkgreen;
+	font-weight: bold;
+    font-size: 1.6em;
+	text-shadow: -2px 1px 1px black;
 }
 
 .navbar a img{
@@ -35,38 +38,20 @@ nav a h3{
 	justify-content: flex-end;
 }
 
-
-
-
-
-/* 
-.textoH{
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		border-top: 1px solid;
-		background-color: #7A5954;
+button{
+	background-color: #B29283;
+    border: none;
 }
 
-.textoH h3{
-	color: #fdf1d8;
-	text-shadow: 1px 2px 1px black;
-	font-size: 2em;
-
-	font-weight: 500;
-	margin-top: 12px;
+button img{
+	height: 50px;
 }
 
-.textoH p{
 
-	font-weight: bold;
-    text-align: center;
-    color: #fdf1d8;
-	text-shadow: 1px 2px 1px black;
-	padding: 10px;
 
-} */
+
+
+
 
 .textoM{
 	display: flex;
@@ -93,7 +78,7 @@ nav a h3{
 	padding: 0px;
 }
 .textoM p{
-
+	font-size: 13px;
 	font-weight: bold;
     text-align: center;
     color: #fdf1d8;
@@ -103,8 +88,18 @@ nav a h3{
 	margin: 0px;
 }
 
+.textoM p .precio-card{
+	font-size: 17px;
+}
+
 #contenedorProductos{
 	margin-bottom: 25px;
+}
+
+.productosEnCarrito{
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
 }
 
 
@@ -177,6 +172,22 @@ nav a h3{
     margin: 0px;		
 }
 
+
+label{
+	padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+	color: darkgreen;
+	text-shadow:-1px 1px 1px black;
+}
+
+label select{
+	background-color: #7a5954;
+    font-size: 18px;
+	color: #fdf1d8;
+	text-shadow: 1px 2px 1px black;
+
+}
 
 
 
@@ -260,62 +271,11 @@ nav a h3{
 	min-height: 250px;
 }
 
+.btn{
+	background-color: darkgreen;
+}
 
 
-
-/*ANIMACIONES*/
-
-
-	.titulo__secundario h2{
-		animation-name: desplazamientoA;
-		animation-duration: 3.5s;
-		animation-fill-mode: forwards;
-	}
-
-	@keyframes desplazamientoA {
-		from{
-			position: relative;
-			padding-left: 0px;
-		}
-
-		to{
-			padding-left: 15%;
-
-		}
-	}
-
-
-
-	.titulo__secundarioM h3{
-		animation-name: desplazamientoS;
-		animation-duration: 2.5s;
-		animation-fill-mode: forwards;
-	}
-
-	@keyframes desplazamientoS {
-		from{
-			padding-left: 0px;
-			position: relative;
-		}
-
-		to{
-			padding-left: 80%;
-
-		}
-	}
-
-
-	@keyframes desplazamiento {
-		from{
-			padding-left: 0px;
-			position: relative;
-		}
-
-		to{
-			padding-left: 25%;
-
-		}
-	}
 
 
 
