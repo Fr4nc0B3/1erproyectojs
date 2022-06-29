@@ -79,12 +79,12 @@ selecTipo.addEventListener("change",()=>{
 
 mostrarProductos(productos)
 
-function mostrarProductos(array) {
+function mostrarProductos(card) {
 
   contenedorProductos.innerHTML = ""
 
 
-  array.forEach(el => {
+  card.forEach(el => {
     let div = document.createElement("div")
     div.className = "col mb-4 col-lg-4 cardbox"
     div.innerHTML = `
@@ -103,7 +103,8 @@ function mostrarProductos(array) {
            let btnCompra = document.getElementById(`boton${el.id}`)
 
            btnCompra.addEventListener("click",() =>{
-              agregarCarrito(el.id);
+              agregarStorage(el.id);
+
            })
   });
 
@@ -113,50 +114,74 @@ function mostrarProductos(array) {
 
 
 
-function agregarCarrito(id) {
 
-  let productosEnCarrito = carrito.find(e=> e.id === id)
+function agregarStorage(id) {
 
-  if (productosEnCarrito) {
-    productosEnCarrito.cantidad = productosEnCarrito.cantidad + 1
-    document.getElementById(`cantidad${productosEnCarrito.id}`).innerHTML =  `<p id="cantidad${productosEnCarrito.id}">Cantidad: ${productosEnCarrito.cantidad}</p>`
+  let productoStorage = JSON.parse(localStorage.getItem(`${id}`))
+
+  // let productosEnCarrito = carrito.find(e=> e.id === id)
+  
+  if (productoStorage) {
+    productoStorage.cantidad = productoStorage.cantidad + 1
+    document.getElementById(`cantidad${productoStorage.id}`).innerHTML =  `<p id="cantidad${productoStorage.id}">Cantidad: ${productoStorage.cantidad}</p>`
     cantidadEnCarrito();
-    
+    localStorage.setItem(`${id}`, JSON.stringify(productoStorage))
+    agregarCarrito();
   } else {
       let productoAgregar = productos.find(e => e.id === id)
       productoAgregar.cantidad = 1
-    carrito.push(productoAgregar);
+      localStorage.setItem(`${id}`, JSON.stringify(productoAgregar))
     cantidadEnCarrito();
-    carritoVentana(productoAgregar);
+    carritoVentana(productoStorage);
+    agregarCarrito();
+
   }
 
 
 }
 
-function carritoVentana(productoAgregar) {
+function agregarCarrito() {
 
-    let div = document.createElement("div");
-    div.className = "productosEnCarrito"
-    div.innerHTML = `
-            <p>${productoAgregar.nombre}</p>
-            <p>${productoAgregar.precio}</p>
-            <p id="cantidad${productoAgregar.id}">Cantidad: ${productoAgregar.cantidad}</p>
-            <button id="eliminar${productoAgregar.id}" type="button" class="btn-sm btn btn-danger">Eliminar</button> `
-    contenedorCarrito.appendChild(div)
+  carrito.length = 0
 
-    let eliminar = document.getElementById(`eliminar${productoAgregar.id}`) 
-    eliminar.addEventListener("click",()=>{
-      if (productoAgregar.cantidad === 1) {
-        eliminar.parentElement.remove();
-        carrito = carrito.filter(e=> e.id !== productoAgregar.id)
-        cantidadEnCarrito();
-      } else {
-        productoAgregar.cantidad = productoAgregar.cantidad - 1
-        document.getElementById(`cantidad${productoAgregar.id}`).innerHTML =  `<p id="cantidad${productoAgregar.id}">Cantidad: ${productoAgregar.cantidad}</p>`
-        cantidadEnCarrito();
-      }
-    })
+  for (let i = 0; i < localStorage.length; i++) {
+    let key = localStorage.key(i)
+    typeof JSON.parse(localStorage.getItem(key)) == "object" && carrito.push(JSON.parse(localStorage.getItem(key)))
+  }
+  carritoVentana();
   
+}
+
+function carritoVentana(carrito) {
+
+
+    carrito.forEach (producto => {
+      contenedorCarrito.innerHTML += `
+            <p>${producto.nombre}</p>
+            <p>${producto.precio}</p>
+            <p id="cantidad${producto.id}">Cantidad: ${producto.cantidad}</p>
+            <button id="eliminar${producto.id}" type="button" class="btn-sm btn btn-danger">Eliminar</button> `
+    } )
+
+
+    // let eliminar = document.getElementById(`eliminar${productoAgregar.id}`) 
+    // eliminar.addEventListener("click",()=>{
+    //   if (productoAgregar.cantidad === 1) {
+    //     localStorage.removeItem(`${productoAgregar.id}`)
+    //     carrito = carrito.filter(e=> e.id !== productoAgregar.id)
+    //     cantidadEnCarrito();
+    //     agregarCarrito()
+    //   } else {
+    //     let productoEliminar =JSON.parse(localStorage.getItem(`${productoAgregar.id}`))
+    //     productoEliminar.cantidad = productoEliminar.cantidad - 1
+    //     localStorage.setItem(`${productoAgregar.id}`, JSON.stringify(productoEliminar))
+
+    //     document.getElementById(`cantidad${productoAgregar.id}`).innerHTML =  `<p id="cantidad${productoAgregar.id}">Cantidad: ${productoAgregar.cantidad}</p>`
+    //     cantidadEnCarrito();
+    //     agregarCarrito();
+    //   }
+    // })
+
 }
 
 
