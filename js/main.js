@@ -120,22 +120,20 @@ function agregarStorage(id) {
   let productoStorage = JSON.parse(localStorage.getItem(`${id}`))
 
   // let productosEnCarrito = carrito.find(e=> e.id === id)
-  
-  if (productoStorage) {
-    productoStorage.cantidad = productoStorage.cantidad + 1
-    document.getElementById(`cantidad${productoStorage.id}`).innerHTML =  `<p id="cantidad${productoStorage.id}">Cantidad: ${productoStorage.cantidad}</p>`
-    cantidadEnCarrito();
-    localStorage.setItem(`${id}`, JSON.stringify(productoStorage))
+        let productoAgregar = productos.find(e => e.id === id)
+  if (productoStorage === null) {
+ 
+      localStorage.setItem(`${id}`, JSON.stringify({...productoAgregar, cantidad: 1}))
     agregarCarrito();
   } else {
-      let productoAgregar = productos.find(e => e.id === id)
-      productoAgregar.cantidad = 1
-      localStorage.setItem(`${id}`, JSON.stringify(productoAgregar))
-    cantidadEnCarrito();
-    carritoVentana(productoStorage);
+    productoStorage.cantidad = productoStorage.cantidad + 1;
+    productoStorage.precio = productoStorage.precio + productoAgregar.precio
+
+    localStorage.setItem(`${id}`, JSON.stringify(productoStorage))
     agregarCarrito();
 
   }
+
 
 
 }
@@ -149,44 +147,55 @@ function agregarCarrito() {
     typeof JSON.parse(localStorage.getItem(key)) == "object" && carrito.push(JSON.parse(localStorage.getItem(key)))
   }
   carritoVentana();
+  cantidadEnCarrito();
   
 }
 
-function carritoVentana(carrito) {
+function carritoVentana() {
+  contenedorCarrito.innerHTML = ""
 
+  carrito.forEach (producto => {
+    contenedorCarrito.innerHTML += `
+          <p>${producto.nombre}:</p>
+          <p>$ ${producto.precio}</p>
+          <p>Cantidad: ${producto.cantidad}</p>
+          <button id="eliminar" data-id="${producto.id}" type="button" class="btn-sm btn btn-danger">Eliminar</button> `
+  } )
 
-    carrito.forEach (producto => {
-      contenedorCarrito.innerHTML += `
-            <p>${producto.nombre}</p>
-            <p>${producto.precio}</p>
-            <p id="cantidad${producto.id}">Cantidad: ${producto.cantidad}</p>
-            <button id="eliminar${producto.id}" type="button" class="btn-sm btn btn-danger">Eliminar</button> `
-    } )
-
-
-    // let eliminar = document.getElementById(`eliminar${productoAgregar.id}`) 
-    // eliminar.addEventListener("click",()=>{
-    //   if (productoAgregar.cantidad === 1) {
-    //     localStorage.removeItem(`${productoAgregar.id}`)
-    //     carrito = carrito.filter(e=> e.id !== productoAgregar.id)
-    //     cantidadEnCarrito();
-    //     agregarCarrito()
-    //   } else {
-    //     let productoEliminar =JSON.parse(localStorage.getItem(`${productoAgregar.id}`))
-    //     productoEliminar.cantidad = productoEliminar.cantidad - 1
-    //     localStorage.setItem(`${productoAgregar.id}`, JSON.stringify(productoEliminar))
-
-    //     document.getElementById(`cantidad${productoAgregar.id}`).innerHTML =  `<p id="cantidad${productoAgregar.id}">Cantidad: ${productoAgregar.cantidad}</p>`
-    //     cantidadEnCarrito();
-    //     agregarCarrito();
-    //   }
-    // })
 
 }
 
 
 function cantidadEnCarrito() {
-
-  contadorCarrito.innerText = carrito.reduce((acc,el)=> acc + el.cantidad, 0)
-  precioTotal.innerText = carrito.reduce((acc, el) => acc + (el.precio * el.cantidad), 0)
+  if (carrito.length !== 0){
+  contadorCarrito.innerText = carrito.reduce((cantidadTotal,{cantidad})=> cantidadTotal + cantidad, 0)
+  precioTotal.innerText = carrito.reduce((precioTotal,{precio} ) => precioTotal + precio, 0)
+}else{
+  contadorCarrito.innerText = ""
+  precioTotal.innerText = ""
 }
+}
+
+contenedorCarrito.addEventListener("click", (e)=>{
+if (e.target.id === "eliminar") {
+eliminarProducto(parseInt(e.target.dataset.id))
+}
+
+})
+
+function eliminarProducto(id) {
+  let productoBorrar = JSON.parse(localStorage.getItem(`${id}`))
+
+  let productoSelec = productos.find(producto => producto.id === id)
+
+if (productoBorrar.cantidad > 1) {
+  productoBorrar.cantidad = productoBorrar.cantidad - 1;
+  productoBorrar.precio = productoBorrar.precio - productoSelec.precio;
+  localStorage.setItem(`${id}`, JSON.stringify(productoBorrar))
+}else{
+  localStorage.removeItem(`${id}`)
+}
+agregarCarrito();
+}
+
+

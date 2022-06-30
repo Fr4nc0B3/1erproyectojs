@@ -236,6 +236,13 @@ label select{
     display: inline;
 }
 
+.modal-body{
+	flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+}
+
+
 .card .textoM{
 	width: 100%;
 	margin: 0px;
