@@ -66,11 +66,13 @@ let productos = [
 selecTipo.addEventListener("change",()=>{
 
   console.log(selecTipo.value);
-  if (selecTipo.value === "all") {
+/*   if (selecTipo.value === "all") {
     mostrarProductos(productos)
   }else{
     mostrarProductos(productos.filter(el => el.tipo === selecTipo.value))
-  };
+  }; */
+
+  selecTipo.value === "all" ? mostrarProductos(productos) :   mostrarProductos(productos.filter(el => el.tipo === selecTipo.value));
   
 });
 
@@ -119,7 +121,7 @@ function agregarStorage(id) {
 
   let productoStorage = JSON.parse(localStorage.getItem(`${id}`))
 
-  // let productosEnCarrito = carrito.find(e=> e.id === id)
+
         let productoAgregar = productos.find(e => e.id === id)
   if (productoStorage === null) {
  
@@ -151,22 +153,31 @@ function agregarCarrito() {
   
 }
 
+for (let i = 0; i < localStorage.length; i++) {
+  let key = localStorage.key(i)
+  typeof JSON.parse(localStorage.getItem(key)) == "object" && carrito.push(JSON.parse(localStorage.getItem(key)))
+  carritoVentana();
+  cantidadEnCarrito();
+}
+
 function carritoVentana() {
   contenedorCarrito.innerHTML = ""
 
   carrito.forEach (producto => {
     contenedorCarrito.innerHTML += `
+          <div class="orden">
           <p>${producto.nombre}:</p>
           <p>$ ${producto.precio}</p>
           <p>Cantidad: ${producto.cantidad}</p>
-          <button id="eliminar" data-id="${producto.id}" type="button" class="btn-sm btn btn-danger">Eliminar</button> `
+          <button id="eliminar" data-id="${producto.id}" type="button" class="btn-sm btn btn-danger">Eliminar</button>
+          </div>`
   } )
 
 
 }
 
-
 function cantidadEnCarrito() {
+  
   if (carrito.length !== 0){
   contadorCarrito.innerText = carrito.reduce((cantidadTotal,{cantidad})=> cantidadTotal + cantidad, 0)
   precioTotal.innerText = carrito.reduce((precioTotal,{precio} ) => precioTotal + precio, 0)
@@ -177,9 +188,11 @@ function cantidadEnCarrito() {
 }
 
 contenedorCarrito.addEventListener("click", (e)=>{
-if (e.target.id === "eliminar") {
+/* if (e.target.id === "eliminar") {
 eliminarProducto(parseInt(e.target.dataset.id))
-}
+} */
+
+e.target.id === "eliminar" && eliminarProducto(parseInt(e.target.dataset.id));
 
 })
 
@@ -197,5 +210,4 @@ if (productoBorrar.cantidad > 1) {
 }
 agregarCarrito();
 }
-
 
