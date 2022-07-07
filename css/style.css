@@ -266,6 +266,7 @@ label select{
 
 .modal-body #eliminar{
 	padding: 9px;
+	background-color: red;
 }
 
 .precioProducto{
@@ -326,8 +327,10 @@ label select{
 	background-color: darkgreen;
 }
 
-
-
-
-
-
+.toast{
+		background: linear-gradient(to right, #B29283, #7A5954);
+		color: #fdf1d8;
+		text-shadow: -1px 1px 1px black;
+		font-size: 1.1em;
+	  
+}
